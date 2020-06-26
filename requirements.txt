@@ -1,0 +1,11 @@
+abcpy~=0.5.6
+matplotlib~=3.2.1
+numpy~=1.18.4
+pandas~=1.0.3
+scikit-learn~=0.21.0
+scipy~=1.4.1
+xlrd~=1.2.0
+
+statsmodels~=0.11.1
+sklearn~=0.0
+wquantiles
