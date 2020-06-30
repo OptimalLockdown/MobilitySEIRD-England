@@ -1,10 +1,14 @@
 # Code for the paper "Using mobility data in the design of optimal lockdown strategies for the COVID-19 pandemic in England" 
 
-The paper can be found at: 
+The preprint can be found at: 
 
-.... add link
+https://arxiv.org/pdf/2006.16059.pdf
 
+Please also check the companion website, where updates on subsequent research will be described: 
 
+https://optimallockdown.github.io/Covid19inEngland/
+
+## Content
 The content of this repository is as follows: 
 
 - `data` contains the data used in the paper for model fit and optimal control. It contains both the raw data and the one formatted for using our code.
