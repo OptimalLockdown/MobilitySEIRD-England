@@ -234,10 +234,10 @@ def plot_R_values_compare_11Apr_26Apr_11May_23May(R_values_11Apr, R_values_26Apr
 
 
 if __name__ == '__main__':
-    optimal_control_results_folder_11Apr = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/optimal_control_results/"
-    optimal_control_results_folder_26Apr = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/optimal_control_results/"
-    optimal_control_results_folder_11May = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/optimal_control_results/"
-    optimal_control_results_folder_23May = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/optimal_control_results/"
+    optimal_control_results_folder_11Apr = "results/SEI4RD_england_infer_1Mar_11Apr/optimal_control_results/"
+    optimal_control_results_folder_26Apr = "results/SEI4RD_england_infer_1Mar_26Apr/optimal_control_results/"
+    optimal_control_results_folder_11May = "results/SEI4RD_england_infer_1Mar_11May/optimal_control_results/"
+    optimal_control_results_folder_23May = "results/SEI4RD_england_infer_1Mar_23May/optimal_control_results/"
     T_11 = 71
     T_23 = 83
     names_files_MAP = ["mode_eps_10_100_1_window_30mobility_iterative", "mode_eps_20_200_2_window_30mobility_iterative",

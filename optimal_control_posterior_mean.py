@@ -406,7 +406,7 @@ def main(epsilon, sigma, filename_prefix, perform_standard_optimal_control=False
     logging.basicConfig(level=logging.INFO)
     ############################ Load relevant data #################################################
     if results_folder is None:
-        results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+        results_folder = "results/SEI4RD_england_infer_1Mar_31Aug/"
     data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 
     alpha_home = 1  # set this to 1
@@ -722,7 +722,7 @@ def plot_different_epsilon_results_post_mean(epsilon_school, epsilon_work, epsil
 
 
 if __name__ == '__main__':
-    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    results_folder = "results/SEI4RD_england_infer_1Mar_31Aug/"
     journal_file_name = "journal_3.jrl"
     training_window_length = None  # if this is None, it assumes that the trainin window is given by the full length of the mobility data.
     epsilon_school = 150

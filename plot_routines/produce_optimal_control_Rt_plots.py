@@ -21,24 +21,24 @@ n_post_samples = 50
 print("End train date:", date_to_use)
 data_folder = "data/england_inference_data_1Mar_to_23May/"
 if date_to_use == '23/05':
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-    optimal_control_results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/optimal_control_results/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_23May/"
+    results_folder = "results/SEI4RD_england_infer_1Mar_23May/"
+    optimal_control_results_folder = "results/SEI4RD_england_infer_1Mar_23May/optimal_control_results/"
     jrnl = Journal.fromFile(results_folder + "PMCABC_inf3.jrl")
 elif date_to_use == '11/05':
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/"
-    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/"
-    optimal_control_results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/optimal_control_results/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_11May/"
+    results_folder = "results/SEI4RD_england_infer_1Mar_11May/"
+    optimal_control_results_folder = "results/SEI4RD_england_infer_1Mar_11May/optimal_control_results/"
     jrnl = Journal.fromFile(results_folder + "journal_3.jrl")
 elif date_to_use == '26/04':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/"
-    optimal_control_results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/optimal_control_results/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_26Apr/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_26Apr/"
+    optimal_control_results_folder = "results/SEI4RD_england_infer_1Mar_26Apr/optimal_control_results/"
     jrnl = Journal.fromFile(journal_folder + "journal_3.jrl")
 elif date_to_use == '11/04':
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/"
-    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/"
-    optimal_control_results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/optimal_control_results/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_11Apr/"
+    results_folder = "results/SEI4RD_england_infer_1Mar_11Apr/"
+    optimal_control_results_folder = "results/SEI4RD_england_infer_1Mar_11Apr/optimal_control_results/"
     jrnl = Journal.fromFile(results_folder + "journal_3_1.jrl")
 
 alpha_home = 1  # set this to 1

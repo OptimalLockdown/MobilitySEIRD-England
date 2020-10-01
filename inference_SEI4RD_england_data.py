@@ -13,8 +13,8 @@ from src.statistic import ExtractSingleTimeseries2DArray
 from src.utils import ABC_inference, determine_eps, generate_samples
 
 logging.basicConfig(level=logging.INFO)
-#results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+#results_folder = "results/SEI4RD_england_infer_1Mar_23May/"
+results_folder = "results/SEI4RD_england_infer_1Mar_31Aug/"
 print(results_folder)
 # load files
 

@@ -27,29 +27,29 @@ training_data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 most_recent_data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 
 if date_to_use == '11/04':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_11Apr/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_11Apr/"
     jrnl = Journal.fromFile(journal_folder + "journal_3_1.jrl")
     T_training = 42  # 11th Apr
 if date_to_use == '26/04':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_26Apr/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_26Apr/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_26Apr/"
     jrnl = Journal.fromFile(journal_folder + "journal_3.jrl")
     T_training = 57  # 26th Apr
 elif date_to_use == '11/05':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11May/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_11May/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_11May/"
     jrnl = Journal.fromFile(journal_folder + "journal_3.jrl")
     T_training = 72  # 11th May
 elif date_to_use == '23/05':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_23May/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_23May/"
     jrnl = Journal.fromFile(journal_folder + "PMCABC_inf3.jrl")
     mobility_home = np.load(training_data_folder + "mobility_home.npy")
     T_training = mobility_home.shape[0]
 elif date_to_use == '31/08':
-    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
-    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    journal_folder = "results/SEI4RD_england_infer_1Mar_31Aug/"
+    images_folder = "results/SEI4RD_england_infer_1Mar_31Aug/"
     jrnl = Journal.fromFile(journal_folder + "journal_3.jrl")
     mobility_home = np.load(training_data_folder + "mobility_home.npy")
     T_training = mobility_home.shape[0]
