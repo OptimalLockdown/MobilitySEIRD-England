@@ -420,7 +420,7 @@ class SEI4RD(ProbabilisticModel, Continuous, SEI4RD_abstract_model):
             rho_1: probability of a clinical infection for age group 1
             rho_2: probability of a clinical infection for age group 2
             rho_3: probability of a clinical infection for age group 3
-            rho_4: probability of a clinical infection for age group 4
+            rho_4: probability of a clinical inf    ection for age group 4
             rho_5: probability of a clinical infection for age group 5
             rho_prime_prime_1: probability of a clinical infection resulting in death for age group 1
             rho_prime_prime_2: probability of a clinical infection resulting in death for age group 2

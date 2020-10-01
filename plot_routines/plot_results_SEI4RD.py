@@ -14,14 +14,17 @@ from src.utils import plot_confidence_bands, plot_results_model, return_jrnl_cre
 # date_to_use = '11/04'
 # date_to_use = '26/04'
 # date_to_use = '11/05'
-date_to_use = '23/05'
+# date_to_use = '23/05'
+date_to_use = '31/08'
 print("End training date:", date_to_use)
 
 # from time import sleep
 # sleep(60)
 # DATA AND RESULTS:
-training_data_folder = "data/england_inference_data_1Mar_to_23May/"
-most_recent_data_folder = "data/england_inference_data_1Mar_to_23May/"
+#training_data_folder = "data/england_inference_data_1Mar_to_23May/"
+#most_recent_data_folder = "data/england_inference_data_1Mar_to_23May/"
+training_data_folder = "data/england_inference_data_1Mar_to_31Aug/"
+most_recent_data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 
 if date_to_use == '11/04':
     journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_11Apr/"
@@ -42,6 +45,12 @@ elif date_to_use == '23/05':
     journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
     images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
     jrnl = Journal.fromFile(journal_folder + "PMCABC_inf3.jrl")
+    mobility_home = np.load(training_data_folder + "mobility_home.npy")
+    T_training = mobility_home.shape[0]
+elif date_to_use == '31/08':
+    journal_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    images_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    jrnl = Journal.fromFile(journal_folder + "journal_3.jrl")
     mobility_home = np.load(training_data_folder + "mobility_home.npy")
     T_training = mobility_home.shape[0]
 
@@ -98,7 +107,7 @@ contact_matrix_work_england = np.load(most_recent_data_folder + "contact_matrix_
 contact_matrix_school_england = np.load(most_recent_data_folder + "contact_matrix_school_england.npy")
 contact_matrix_other_england = np.load(most_recent_data_folder + "contact_matrix_other_england.npy")
 
-observation_england_more_recent = np.load(most_recent_data_folder + "observed_data.npy")
+observation_england_more_recent = np.load(most_recent_data_folder + "observed_data.npy", allow_pickle=True)
 T_most_recent_data = mobility_school.shape[0]
 
 print(T_training, T_most_recent_data)
@@ -106,7 +115,7 @@ print(T_training, T_most_recent_data)
 iteration = -1  # iteration to use for plots (only works if full_output=1)
 n_post_samples = 100  # to be used for final confidence bands plots.
 # start and final day for the trajectories plots:
-start_step = 0
+start_step = 19
 if date_to_use == '11/04':
     # end_step = 60  # date until which to show predictions; for 11th Apr
     # end_step_observation = 60  # date until which to show the actual values; for 11th Apr
@@ -121,13 +130,16 @@ elif date_to_use == '11/05':
 elif date_to_use == '23/05':
     end_step = T_most_recent_data + 7  # date until which to show predictions
     end_step_observation = T_most_recent_data  # date until which to show the actual values
+elif date_to_use == '31/08':
+    end_step = T_most_recent_data + 7  # date until which to show predictions
+    end_step_observation = T_most_recent_data - 8  # date until which to show the actual values
 return_observation_only_hospitalized = True
 plot_posteriors_splitted = True
 plot_posteriors_rhos = False
 plot_posteriors_all = False
 plot_posteriors_marginals = False
 plot_violinplots = False
-plot_trajectories = False
+plot_trajectories = True
 plot_posterior_mean_traj = False
 CI_size = 99
 seed = 1
@@ -138,7 +150,7 @@ np.random.seed(seed)
 # parameters
 n = 5  # number of age groups
 dt = 0.1  # integration timestep
-T = T_most_recent_data + 7  # horizon time in days (needs to be 1 less than the number of days in observation for
+T = T_most_recent_data + 21  # horizon time in days (needs to be 1 less than the number of days in observation for
 # T = T_most_recent_data + 40  # horizon time in days (needs to be 1 less than the number of days in observation for
 # inference)
 total_population = england_pop  # population for each age group
@@ -446,8 +458,10 @@ ax2.text(84, 750, '23rd May', horizontalalignment='left', verticalalignment='cen
 # ax2.set_ylim([0, 1])
 # ax2.legend()
 ax2.tick_params(axis='y', labelcolor=color)
-obs_deceased_sum = np.sum(observation_england_more_recent[:, 0:5], axis=1)
-ax2.plot(np.arange(start_step, end_step_observation), obs_deceased_sum[start_step:end_step_observation], color=color,
+obs_deceased_sum = np.sum(observation_england_more_recent[start_step:end_step_observation, 0:5], axis=1)
+# ax2.plot(np.arange(start_step, end_step_observation), obs_deceased_sum[start_step:end_step_observation], color=color,
+#          alpha=.7)
+ax2.plot(np.arange(start_step, end_step_observation), obs_deceased_sum, color=color,
          alpha=.7)
 
 # ax.legend()
@@ -466,8 +480,8 @@ ax.set_xlabel("Date of death", size=label_size)
 ax.legend(handles=legend_elements, **legend_kwargs)
 
 if return_observation_only_hospitalized:
-    obs_deceased_sum = np.sum(observation_england_more_recent[:, 0:5], axis=1)
-    ax.plot(np.arange(start_step, end_step_observation), obs_deceased_sum[start_step:end_step_observation], color="C2")
+    obs_deceased_sum = np.sum(observation_england_more_recent[start_step:end_step_observation, 0:5], axis=1)
+    ax.plot(np.arange(start_step, end_step_observation), obs_deceased_sum, color="C2")
 
     plot_confidence_bands(np.sum(post_simulations_in_exp[:, :, 0:5], axis=2), ax=ax, fig=fig, end_step=end_step,
                           start_step=start_step, outer_band=0, inner_band=CI_size)
@@ -530,7 +544,7 @@ for age_group in range(5):
     ax.set_xticklabels(xticks_labels)
     ax.set_xlim(start_step - 1, end_step + 1)
 
-    obs_deaths_cumsum = np.cumsum(observation_england_more_recent[:, 0:5], axis=0)
+    obs_deaths_cumsum = np.cumsum(observation_england_more_recent[start_step:end_step_observation, 0:5], axis=0)
 
     if return_observation_only_hospitalized:
         ax.plot(np.arange(start_step, end_step_observation),
@@ -562,7 +576,7 @@ if not return_observation_only_hospitalized:
                            alpha=.2,
                            end_step=end_step, start_step=start_step)
     ax[0, 2].plot(observation_england_more_recent[:, -1], color="C1", lw=2)
-    ax[1, 2].plot(np.cumsum(np.sum(observation_england_more_recent[:, 0:5], axis=1)), color="C1", lw=2)
+    ax[1, 2].plot(np.cumsum(np.sum(observation_england_more_recent[start_step:end_step_observation, 0:5], axis=1)), color="C1", lw=2)
 
     for x in range(ax.shape[0]):
         for y in range(ax.shape[1]):

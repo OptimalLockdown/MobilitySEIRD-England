@@ -28,3 +28,7 @@ pip3 install -r requirements.txt
 ```
 
 According to your python3 installation, you may require `pip` instead of `pip3`.
+
+
+TODO check data, may need to add more!
+TODO check plot routines as well. 

@@ -13,11 +13,13 @@ from src.statistic import ExtractSingleTimeseries2DArray
 from src.utils import ABC_inference, determine_eps, generate_samples
 
 logging.basicConfig(level=logging.INFO)
-results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
+#results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
+results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
 print(results_folder)
 # load files
 
-data_folder = "data/england_inference_data_1Mar_to_23May/"
+#data_folder = "data/england_inference_data_1Mar_to_23May/"
+data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 
 # alpha_home = np.load(data_folder + "alpha_home.npy")
 alpha_home = 1  # fix this
@@ -32,7 +34,8 @@ contact_matrix_work_england = np.load(data_folder + "contact_matrix_work_england
 contact_matrix_school_england = np.load(data_folder + "contact_matrix_school_england.npy")
 contact_matrix_other_england = np.load(data_folder + "contact_matrix_other_england.npy")
 
-observation_england = np.load(data_folder + "observed_data.npy")
+observation_england = np.load(data_folder + "observed_data.npy", allow_pickle=True)
+#print(observation_england.shape)
 # thee last column of the above one represents the number of Ic people in our model.
 
 # parameters
@@ -93,10 +96,10 @@ distances_list = []
 # this has to be used if the model returns already the correct observations (return_observation_only=True)
 for i in range(n):
     distances_list.append(
-        Euclidean(ExtractSingleTimeseries2DArray(index=i, rho=rho, end_step=71)))  # deceased
+        Euclidean(ExtractSingleTimeseries2DArray(index=i, rho=rho, end_step=-1)))  # deceased
 # now add the distance on the number of hospitalized people, that needs to discard the first 17 elements because there
 # is no data on that before the 18th March.
-distances_list.append(Euclidean(ExtractSingleTimeseries2DArray(index=5, rho=rho, start_step=17, end_step=71)))
+distances_list.append(Euclidean(ExtractSingleTimeseries2DArray(index=5, rho=rho, start_step=19, end_step=-1)))
 
 # define a weighted distance:
 # max values of the daily counts:  1.,   9.,  73., 354., 462., 17933.
@@ -106,7 +109,7 @@ weights = [1, 1, 1, 2, 2, .1]
 # weights = [1.0 / 1 * 0.75, 1.0 / 9 * 0.75, 1.0 / 68 * 0.85, 1.0 / 338, 1.0 / 445, 1.0 / 4426]
 # weights = [1, 0.1, 0.01, 0.005, 0.005, 0.005]
 final_distance = WeightedDistance(distances_list, weights=weights)
-print("dist", final_distance.distance(observation_england_1, observation_england_2))
+print("dist", final_distance.distance(observation_england_1, [observation_england]))
 
 # define backend
 backend = Backend()

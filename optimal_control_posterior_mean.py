@@ -322,6 +322,10 @@ class PosteriorCost:
             # ax1.set_xticks([0, 9, 19, 29, 39, 49, 59])
             # ax1.set_xticks(np.arange(64), minor=True)
             # ax1.set_xticklabels(['23/05', '02/06', '12/06', '22/06', '02/07', '12/07', '22/07'])
+        elif self.model.T == 183: # not sure
+            ax1.set_xticks([0, 30, 61, 91])  # not sure about this either
+            ax1.set_xticklabels(['01/09', '01/10', '01/11', '01/12'])
+
         ax1.set_xlabel('Date')
         ax1.set_ylabel('Hospitalized', color=color)
         if self.model.T != 41:
@@ -402,8 +406,8 @@ def main(epsilon, sigma, filename_prefix, perform_standard_optimal_control=False
     logging.basicConfig(level=logging.INFO)
     ############################ Load relevant data #################################################
     if results_folder is None:
-        results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-    data_folder = "data/england_inference_data_1Mar_to_23May/"
+        results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    data_folder = "data/england_inference_data_1Mar_to_31Aug/"
 
     alpha_home = 1  # set this to 1
     mobility_work = np.load(data_folder + "mobility_work.npy")
@@ -704,7 +708,7 @@ def plot_different_epsilon_results_post_mean(epsilon_school, epsilon_work, epsil
                                              results_folder=None, journal_file_name=None, training_window_length=None,
                                              n_post_samples=50, iteration=None, plot_days=120):
     main(epsilon=[epsilon_school, epsilon_work, epsilon_other], sigma=1, window_size=window_size,
-         filename_prefix="optimal_control_results/mode_eps_{}_{}_{}_window_{}_post_samples_{}".format(epsilon_school,
+         filename_prefix="mode_eps_{}_{}_{}_window_{}_post_samples_{}".format(epsilon_school,
                                                                                                       epsilon_work,
                                                                                                       epsilon_other,
                                                                                                       window_size,
@@ -718,15 +722,15 @@ def plot_different_epsilon_results_post_mean(epsilon_school, epsilon_work, epsil
 
 
 if __name__ == '__main__':
-    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_23May/"
-    journal_file_name = None
-    training_window_length = None
-    epsilon_school = 200
-    epsilon_work = 200
-    epsilon_other = 200
+    results_folder = "results/PMCABC/real_data/SEI4RD_england_infer_1Mar_31Aug/"
+    journal_file_name = "journal_3.jrl"
+    training_window_length = None  # if this is None, it assumes that the trainin window is given by the full length of the mobility data.
+    epsilon_school = 150
+    epsilon_work = 300
+    epsilon_other = 3
 
     run_different_epsilon_with_post_mean(epsilon_school=epsilon_school, epsilon_work=epsilon_work,
                                          epsilon_other=epsilon_other,
                                          results_folder=results_folder, journal_file_name=journal_file_name,
                                          training_window_length=training_window_length, n_post_samples=1, use_mpi=False,
-                                         restart_at_index=64)
+                                         restart_at_index=None)
