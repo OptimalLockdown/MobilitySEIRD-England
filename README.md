@@ -1,6 +1,8 @@
-# Code for the paper "Using mobility data in the design of optimal lockdown strategies for the COVID-19 pandemic in England" 
+# Code for the paper "Using mobility data in the design of optimal lockdown strategies for the COVID-19 pandemic" 
 
-The preprint can be found at: 
+We report here code, data and results for England; inference is done with data until 23rd May and 31st August.
+
+The preprint which focuses on England can be found at: 
 
 https://arxiv.org/pdf/2006.16059.pdf
 
@@ -15,7 +17,8 @@ The content of this repository is as follows:
 - `plot_routines` contains some scripts to produce plots in the paper.
 - `results` contains the `.jrl` files used to store the inference results in the ABCpy library, together with some figures.
 - `src` contains source code, with model definition and various utilities functions.
-- `Datasets.ipynb` is a jupyter notebook describing the data sources and the data processing operations before fitting the model. 
+- `Datasets.ipynb` is a jupyter notebook exemplifying the data sources and the data processing operations before fitting the model, for inference with observed data until 23rd May.
+- `Dataset_England.py` is instead a Python script used to format data for inference with observations until 31st August. 
 - `inference_SEI4RD_england_data.py` is the script performing model fit; can be used with MPI parallelization by uncommenting one line. 
 - `optimal_control_posterior_mean.py` is the script performing optimal control under uncertainty, together with the definition of several functions to perform optimal control in specific cases. 
 
@@ -28,7 +31,3 @@ pip3 install -r requirements.txt
 ```
 
 According to your python3 installation, you may require `pip` instead of `pip3`.
-
-
-TODO check data, may need to add more!
-TODO check plot routines as well. 
